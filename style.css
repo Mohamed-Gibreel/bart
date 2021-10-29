@@ -136,6 +136,9 @@
     border-radius: 4px;
     overflow:hidden;
 }
+.active-card{
+    cursor: pointer;
+}
 
 .architecture-card img{
     height: 100%;
@@ -206,6 +209,23 @@
 .carousel-inner{
     border-radius: 20px;
 }
+
+.carousel-control-btns{
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-control-prev-icon , .carousel-control-next-icon{
+    background: white;
+    background-blend-mode: difference;
+}
+
 
 
 
@@ -293,7 +313,7 @@ label {
     justify-content: center;
     align-items: center;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: bolder;
     cursor: pointer;
 }
 
@@ -354,4 +374,5 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: bold;
 }
