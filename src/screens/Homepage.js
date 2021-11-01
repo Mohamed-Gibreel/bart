@@ -1,22 +1,31 @@
 //React
 import React, { useState } from "react";
 
-//SASS
-import "../styles/style.scss";
-
 //Images
 import NatureThumbnail from "../assets/nature/nature-1.jpg";
 import ArchitectureThumbnail from "../assets/architecture/arch-1.jpg";
 import PeopleThumbnail from "../assets/people/people-1.jpg";
 import MealThumbnail from "../assets/meal/meal-1.jpg";
 import AbstractThumbnail from "../assets/abstract/abstract-1.jpg";
-import { Modal, Button } from "react-bootstrap";
 
-export default function Homepage() {
+//Packages
+import { Modal } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusSquare } from "@fortawesome/free-regular-svg-icons";
+
+//React Router
+import { useHistory } from "react-router";
+
+const Homepage = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const history = useHistory();
+
+  const goToArchitecturePage = () => {
+    history.push("/architecture");
+  };
   return (
     <>
       <Modal show={show} onHide={handleClose} centered>
@@ -39,8 +48,6 @@ export default function Homepage() {
             Pridať
           </div>
         </Modal.Body>
-        {/* <Modal.Footer>
-        </Modal.Footer> */}
       </Modal>
       <section class="main-section">
         <div class="header">Fotogaléria</div>
@@ -55,17 +62,15 @@ export default function Homepage() {
             </div>
             <div class="location-name">Príroda</div>
           </div>
-          <a href="architecture-page.html">
-            <div class="card">
-              <div class="indicator">
-                <div class="indicator-card">5 fotiek</div>
-              </div>
-              <div class="img-wrapper">
-                <img src={ArchitectureThumbnail} alt="Architektúra" />
-              </div>
-              <div class="location-name">Architektúra</div>
+          <div class="card">
+            <div class="indicator">
+              <div class="indicator-card">5 fotiek</div>
             </div>
-          </a>
+            <div class="img-wrapper" onClick={goToArchitecturePage}>
+              <img src={ArchitectureThumbnail} alt="Architektúra" />
+            </div>
+            <div class="location-name">Architektúra</div>
+          </div>
           <div class="card">
             <div class="indicator">
               <div class="indicator-card">2 fotky</div>
@@ -94,11 +99,17 @@ export default function Homepage() {
             <div class="location-name">Abstraktné</div>
           </div>
           <div class="add-card" onClick={handleShow}>
-            <i class="far fa-plus-square fa-2x add-icon"></i>
+            <FontAwesomeIcon
+              icon={faPlusSquare}
+              size="2x"
+              className="add-icon"
+            />
             <div>Pridať kategóriu</div>
           </div>
         </div>
       </section>
     </>
   );
-}
+};
+
+export default Homepage;

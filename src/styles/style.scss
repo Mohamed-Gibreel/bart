@@ -112,8 +112,9 @@
   cursor: pointer;
 }
 .back-arrow {
-  margin-right: 8px;
+  margin-right: 15px;
   color: #999898;
+  cursor: pointer;
 }
 .architecture-card {
   height: 295px;
@@ -142,13 +143,7 @@
 .active-card {
   cursor: pointer;
 }
-.carousel-item {
-  img {
-    height: 909px !important;
-    object-fit: cover;
-    border-radius: 16px;
-  }
-}
+
 .icon-container {
   background-color: whitesmoke;
   width: 60px !important;
@@ -182,10 +177,10 @@
     opacity: 1 !important;
   }
 }
-.modal-dialog {
-  max-width: 1212px;
-  background: transparent !important;
-}
+// .modal-dialog {
+//   max-width: 1212px;
+//   background: transparent !important;
+// }
 .carousel-inner {
   border-radius: 20px;
 }
@@ -199,13 +194,42 @@
   justify-content: center;
   align-items: center;
 }
-.carousel-control-prev-icon {
-  background: white;
-  background-blend-mode: difference;
+.carousel-dialog {
+  max-width: 1212px !important;
 }
+.carousel-content {
+  width: 1212px !important;
+}
+
 .carousel-control-next-icon {
   background: white;
   background-blend-mode: difference;
+  background-size: 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.carousel-control-prev-icon {
+  background: white;
+  background-blend-mode: difference;
+  background-size: 40px !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+}
+.carousel-item {
+  img {
+    height: 909px !important;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+}
+.carousel-modal-content {
+  width: 100%;
+  pointer-events: auto;
+  background: transparent !important;
 }
 .textOnInput {
   position: relative;
@@ -240,14 +264,10 @@ label {
 }
 .modal-content {
   border-radius: 16px !important;
-  width: 560px !important;
-  height: 325px !important;
-  background-color: transparent;
-  border: none;
-}
-.carousel-modal-content {
-  width: 100%;
-  pointer-events: auto;
+  width: 560px;
+  min-height: 325px !important;
+  background-color: white !important;
+  border: none !important;
 }
 .pridat-content {
   display: flex !important;
