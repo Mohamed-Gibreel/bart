@@ -1,6 +1,7 @@
 //Components
 import Homepage from "./screens/Homepage";
 import Architecture from "./screens/Architecture";
+import Gallery from "./screens/Gallery";
 
 // SASS
 import "./styles/style.scss";
@@ -16,7 +17,8 @@ function App() {
     <Router>
       <Switch>
         <Route path="/architecture">
-          <Architecture />
+          {/* <Architecture /> */}
+          <Gallery />
         </Route>
         <Route path="/">
           <Homepage />

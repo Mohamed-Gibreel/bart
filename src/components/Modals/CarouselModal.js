@@ -17,11 +17,11 @@ const CarouselModal = (props) => {
         }}
       >
         <Carousel>
-            {props.images.map(image => 
-                <Carousel.Item>
-                    <img className="d-block" src={image.img} alt="1" />
-                </Carousel.Item>    
-            )}
+          {props.images.map((image, index) => (
+            <Carousel.Item key={index}>
+              <img className="d-block" src={image.img} alt="1" />
+            </Carousel.Item>
+          ))}
         </Carousel>
       </Modal.Body>
     </Modal>

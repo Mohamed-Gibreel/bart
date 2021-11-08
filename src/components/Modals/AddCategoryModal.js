@@ -78,23 +78,12 @@ const AddCategoryModal = (props) => {
     }
   };
 
-  useEffect(() => {
-    if (storedFiles.length > 0) {
-      previewFile();
-    }
-  }, [storedFiles, previewFile]);
-
-  useEffect(() => {
-    return () => {
-      setStoredFiles([]);
-    };
-  }, [props.show]);
-
   const createCategory = () => {
     console.log("=-=-=-=-=-=-=-=-=-=-=-=-");
     console.log("Create Category");
     console.log(category);
-    // props.handleClose();
+    props.addToCategory(category);
+    props.handleClose();
     console.log("=-=-=-=-=-=-=-=-=-=-=-=-");
   };
 
@@ -116,7 +105,7 @@ const AddCategoryModal = (props) => {
           ></button>
         </div>
         <div className="textOnInput">
-          <label for="inputText">Názov kategórie *</label>
+          <label htmlFor="inputText">Názov kategórie *</label>
           <input
             id="category"
             name="category"
