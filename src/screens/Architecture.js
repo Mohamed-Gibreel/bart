@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faPlusSquare } from "@fortawesome/free-regular-svg-icons";
-import { Modal, Carousel } from "react-bootstrap";
 
 //React router
 import { useHistory } from "react-router";
@@ -17,107 +16,95 @@ import Arch_3 from "../assets/architecture/arch-3.jpg";
 import Arch_4 from "../assets/architecture/arch-4.jpg";
 import Arch_5 from "../assets/architecture/arch-5.jpg";
 
+//Components
+import Card from "../components/Card";
+
+//Modals
+import UploadImageModal from "../components/Modals/UploadImageModal";
+import CarouselModal from "../components/Modals/CarouselModal";
+
 export default function Architecture() {
+  //Use states
   const [show, setShow] = useState(false);
+  const [showCarousel, setshowCarousel] = useState(false);
+  const [images] = useState([
+    {
+      id: 1,
+      img: Arch_1,
+      alt: "Plane",
+    },
+    {
+      id: 2,
+      img: Arch_2,
+      alt: "New York",
+    },
+    {
+      id: 3,
+      img: Arch_3,
+      alt: "Lake",
+    },
+    {
+      id: 4,
+      img: Arch_4,
+      alt: "Sea",
+    },
+    {
+      id: 5,
+      img: Arch_5,
+      alt: "Trees",
+    },
+  ]);
+
+  //Handler
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [showCarousel, setshowCarousel] = useState(false);
+  //Carousel Handler
   const handleCloseCarousel = () => setshowCarousel(false);
   const handleShowCarousel = () => setshowCarousel(true);
+
   const history = useHistory();
+  const goToHomepage = () => {
+    history.push("/");
+  };
+
+  const AddCard = () => {
+    return (
+      <div className="add-card" onClick={handleShow}>
+        <FontAwesomeIcon icon={faPlusSquare} size="2x" className="add-icon" />
+        <div>Pridat fotky</div>
+      </div>
+    );
+  };
+
   return (
-    <section class="main-section">
-      <div class="header">Fotogaleria</div>
-      <div class="sub-header">
+    <section className="main-section">
+      <div className="header">Fotogaleria</div>
+      <div className="sub-header">
         <FontAwesomeIcon
           icon={faArrowLeft}
           className="back-arrow"
-          onClick={() => history.push("/")}
+          onClick={goToHomepage}
         />
         <span>Architektura</span>
       </div>
-      <div class="cards">
-        <div class="architecture-card active-card" onClick={handleShowCarousel}>
-          <img src={Arch_1} alt="Plane" />
-        </div>
-        <div class="architecture-card">
-          <img src={Arch_2} alt="New York" />
-        </div>
-        <div class="architecture-card">
-          <img src={Arch_3} alt="Lake" />
-        </div>
-        <div class="architecture-card">
-          <img src={Arch_4} alt="Sea" />
-        </div>
-        <div class="architecture-card">
-          <img src={Arch_5} alt="Trees" />
-        </div>
-        <div class="add-card" onClick={handleShow}>
-          <FontAwesomeIcon icon={faPlusSquare} size="2x" className="add-icon" />
-          <div>Pridat fotky</div>
-        </div>
-        <Modal show={show} onHide={handleCloseCarousel} centered>
-          <Modal.Body className="add-image-content">
-            <div class="pridat-content">
-              <div class="pridat-header">
-                <h5
-                  class="modal-title pridat-header"
-                  id="addCategoryModalLabel"
-                >
-                  Pridať fotky
-                </h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  onClick={handleClose}
-                ></button>
-              </div>
-              <div class="add-image-dialog">
-                <i class="far fa-image fa-2x"></i>
-                <span class="add-image-title">Sem presunte fotky</span>
-                <span class="add-image-description">alebo</span>
-                <div class="add-image-btn">Vyberte súbory</div>
-              </div>
-              <div class="pridat-btn" onClick={handleClose}>
-                Pridať
-              </div>
-            </div>
-          </Modal.Body>
-        </Modal>
-
-        <Modal
-          dialogClassName="carousel-dialog"
-          contentClassName="carousel-content"
-          style={{ background: "transparent" }}
+      <div className="cards">
+        {images.map((image) => (
+          <Card
+            isCategory={false}
+            img={image.img}
+            alt={image.alt}
+            onClick={image.id == 1 ? handleShowCarousel : null}
+            isActive={image.id == 1 ? true : false}
+          />
+        ))}
+        <AddCard />
+        <UploadImageModal show={show} onHide={handleClose} />
+        <CarouselModal
           show={showCarousel}
           onHide={handleCloseCarousel}
-          centered
-        >
-          <Modal.Body
-            style={{
-              padding: "0",
-            }}
-          >
-            <Carousel>
-              <Carousel.Item>
-                <img className="d-block" src={Arch_1} alt="First slide" />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img className="d-block" src={Arch_2} alt="Second slide" />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img className="d-block" src={Arch_3} alt="Third slide" />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img className="d-block" src={Arch_4} alt="Fourth slide" />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img className="d-block" src={Arch_5} alt="Five slide" />
-              </Carousel.Item>
-            </Carousel>
-          </Modal.Body>
-        </Modal>
+          images={images}
+        />
       </div>
     </section>
   );

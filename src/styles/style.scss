@@ -199,15 +199,15 @@
 }
 .carousel-content {
   width: 1212px !important;
+  background: transparent !important;
 }
-
 .carousel-control-next-icon {
   background: white;
   background-blend-mode: difference;
-  background-size: 40px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  background-size: 40px !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
 }
 
 .carousel-control-prev-icon {
@@ -220,7 +220,6 @@
 }
 .carousel-item {
   img {
-    height: 909px !important;
     width: 100%;
     object-fit: cover;
     border-radius: 16px;
@@ -266,7 +265,7 @@ label {
   border-radius: 16px !important;
   width: 560px;
   min-height: 325px !important;
-  background-color: white !important;
+  // background-color: white !important;
   border: none !important;
 }
 .pridat-content {
@@ -317,6 +316,7 @@ label {
   justify-content: center;
   align-items: center;
   row-gap: 14px;
+  position: relative;
 }
 .add-image-content {
   position: relative;
@@ -348,6 +348,7 @@ label {
   opacity: 0.56;
 }
 .add-image-btn {
+  cursor: pointer;
   border: 2px solid #000000;
   border-radius: 4px;
   opacity: 1;
@@ -357,4 +358,67 @@ label {
   justify-content: center;
   align-items: center;
   font-weight: bold;
+}
+
+.uploadedImagesStyle {
+  display: grid;
+  width: inherit;
+  height: inherit;
+  grid-template-columns: repeat(4, 1fr);
+  overflow: auto;
+  row-gap: 20px;
+  align-items: center;
+  justify-items: center;
+  margin-top: 10px;
+}
+
+.dragNdrop {
+  height: 100vh;
+  z-index: 999;
+  background: red;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: white;
+  justify-content: center;
+  align-content: center;
+  display: flex;
+  text-align: center;
+  top: 0%;
+  padding-top: 110px;
+}
+
+.imageContainer {
+  position: relative;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background: rgb(255, 93, 93);
+    .uploadedImg {
+      opacity: 0.3;
+    }
+    .deleteDiv {
+      opacity: 1;
+    }
+  }
+}
+
+.uploadedImg {
+  opacity: 1;
+  display: block;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.deleteDiv {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  color: white;
 }
